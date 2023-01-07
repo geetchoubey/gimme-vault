@@ -15,8 +15,14 @@ type Config struct {
 	Namespace *string
 }
 
+var isConfigInitialized bool
+
 func (c *Config) GetQualifiedKey(key string) string {
 	return *c.Namespace + "." + key
+}
+
+func (c *Config) GetUsername() string {
+	return c.GetString("username")
 }
 
 func (c *Config) GetString(key string) string {
@@ -25,6 +31,10 @@ func (c *Config) GetString(key string) string {
 
 func (c *Config) GetBool(key string) bool {
 	return viper.GetBool(c.GetQualifiedKey(key))
+}
+
+func (c *Config) GetInt64(key string) int64 {
+	return viper.GetInt64(c.GetQualifiedKey(key))
 }
 
 func (c *Config) GetInt(key string) int {
@@ -48,6 +58,10 @@ func (c *Config) Save() error {
 	return nil
 }
 
+func (c *Config) IsConfigInitialized() bool {
+	return isConfigInitialized
+}
+
 func Init(fileName string) {
 	home, err := os.UserHomeDir()
 	cobra.CheckErr(err)
@@ -63,5 +77,7 @@ func Init(fileName string) {
 	if err := viper.ReadInConfig(); err != nil {
 		jww.INFO.Println("Configuration not initialized")
 		// panic(fmt.Errorf("unable to use config file: %v", viper.ConfigFileUsed()))
+	} else {
+		isConfigInitialized = true
 	}
 }

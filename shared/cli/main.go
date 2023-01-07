@@ -16,7 +16,10 @@ type Reader struct {
 	Config configuration.Config
 }
 
-func read() string {
+func Read(args ...string) string {
+	if len(args) == 1 {
+		fmt.Printf(args[0])
+	}
 	reader := bufio.NewReader(os.Stdin)
 	str, _ := reader.ReadString('\n')
 	return strings.Trim(str, "\n")
@@ -24,7 +27,7 @@ func read() string {
 
 func (r *Reader) ReadValue(key string) {
 	fmt.Printf("%s[%s] ", key, r.Config.GetString(key))
-	value := read()
+	value := Read()
 	if len(value) > 0 {
 		r.Config.Set(key, value)
 	}

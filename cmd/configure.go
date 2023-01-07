@@ -6,10 +6,9 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/geetchoubey/gimme-vault/shared/configuration"
 	"github.com/spf13/cobra"
 )
-
-var keys = [2]string{"username", "accountnumber"}
 
 // configureCmd represents the configure command
 var configureCmd = &cobra.Command{
@@ -17,7 +16,7 @@ var configureCmd = &cobra.Command{
 	Short: "Configure command",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Printf("Setting configuration for profile: [%s]\n", profile)
-		for _, v := range keys {
+		for _, v := range configuration.Keys {
 			reader.ReadValue(v)
 		}
 		if err := config.Save(); err != nil {
