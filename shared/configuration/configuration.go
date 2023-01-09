@@ -15,8 +15,6 @@ type Config struct {
 	Namespace *string
 }
 
-var isConfigInitialized bool
-
 func (c *Config) GetQualifiedKey(key string) string {
 	return *c.Namespace + "." + key
 }
@@ -59,7 +57,7 @@ func (c *Config) Save() error {
 }
 
 func (c *Config) IsConfigInitialized() bool {
-	return isConfigInitialized
+	return viper.Get(*c.Namespace) != nil
 }
 
 func Init(fileName string) {
@@ -77,7 +75,5 @@ func Init(fileName string) {
 	if err := viper.ReadInConfig(); err != nil {
 		jww.INFO.Println("Configuration not initialized")
 		// panic(fmt.Errorf("unable to use config file: %v", viper.ConfigFileUsed()))
-	} else {
-		isConfigInitialized = true
 	}
 }
