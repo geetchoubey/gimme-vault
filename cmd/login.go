@@ -11,7 +11,7 @@ import (
 	"github.com/geetchoubey/gimme-vault/shared/http"
 	"github.com/spf13/cobra"
 	jww "github.com/spf13/jwalterweatherman"
-	"golang.org/x/crypto/ssh/terminal"
+	"golang.org/x/term"
 )
 
 // loginCmd represents the login command
@@ -49,7 +49,7 @@ func checkLoginValid() bool {
 func doLogin() {
 	fmt.Printf("Logging in using [%s] profile\n", profile)
 	fmt.Printf("Password: ")
-	password, err := terminal.ReadPassword(0)
+	password, err := term.ReadPassword(0)
 	if err != nil {
 		panic(fmt.Errorf("error reading password %v", err))
 	}
