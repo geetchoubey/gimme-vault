@@ -1,5 +1,5 @@
 # Gimme Vault
-Simple Go helper application to login to AWS Cli
+Configurable Golang application to login to AWS CLI
 
 ## Features
 - Easy to configure
@@ -10,6 +10,12 @@ Simple Go helper application to login to AWS Cli
 - Connect to the appropriate VPN
 - [Golang](https://go.dev/)
 - That's it!!
+
+## Build
+
+```bash
+go build .
+```
 
 ## How to use
 
@@ -26,12 +32,12 @@ Simple Go helper application to login to AWS Cli
 https://some_url:8200/v1/\<resource\>/aws_account/\<action\>
 ```
 username = your_ldap_username
-awsAccount = aws_account_number // 123456789012
-region = aws_region // us-west-2
-url = vault_addr // eg: https://some_url:8200
-version = v1 // Check wiki CURL
-resource = ... * // Check wiki CURL
-action = ... * // Check wiki CURL
+awsAccount = aws_account        // 123456789012
+region = aws_region             // us-west-2
+url = vault_addr                // eg: https://some_url:8200
+version = v1                    // Check wiki CURL
+resource = ...                  // Check wiki CURL
+action = ...                    // Check wiki CURL
 ```
 
 
