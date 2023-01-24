@@ -58,6 +58,7 @@ func doLogin() {
 	if err != nil {
 		jww.DEBUG.Fatalln(err)
 		jww.FEEDBACK.Println("Error occurred. Please retry")
+		jww.CRITICAL.Fatalf("error while logging in %v \n", err)
 		return
 	}
 	fmt.Println("Successfully logged in")
