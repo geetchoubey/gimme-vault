@@ -12,6 +12,7 @@ func (c *Config) GetLoginUrl() string {
 func (c *Config) GetAWSWriteUrl() string {
 	return c.GetString("url") + "/" +
 		c.GetString("version") + "/" +
-		"account/" + c.GetString("awsAccount") +
-		"/sts/Owner"
+		c.GetString("resource") + "/" +
+		c.GetString("awsAccount") + "/" +
+		c.GetString("action")
 }
