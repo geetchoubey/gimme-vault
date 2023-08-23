@@ -27,7 +27,7 @@ func Read(args ...string) string {
 
 func (r *Reader) ReadValue(key string) {
 	fmt.Printf("%s[%s] ", key, r.Config.GetString(key))
-	value := Read()
+	value := strings.TrimSpace(Read())
 	if len(value) > 0 {
 		r.Config.Set(key, value)
 	}
